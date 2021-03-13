@@ -2,30 +2,30 @@
 <body>
 <p style="font-size:80px">使用前先点重置<br/>
 当前板子：
-<select id="gamemode" style="width:600px;height:100px;font-size:80px">
+<select id="gamemode" style="width:600px;height:100px;font-size:80px" onchange="gmchange()">
 <option value="ynls12">预女猎守12人</option>
 <option value="ynl9">预女猎9人</option>
 </select>
 <p>
-<button style="width:400px;height:120px;font-size:80px"onclick="Reset()">重置</button>
-<button style="width:400px;height:120px;font-size:80px"onclick="Roll()">发牌</button>
-<button style="width:400px;height:120px;font-size:80px"onclick="AllIdentity()">身份一览</button>
-<button style="width:400px;height:120px;font-size:80px"onclick="Inform()">板子信息</button>
-<button style="width:400px;height:120px;font-size:80px"onclick="Note()">上帝记录</button>
+<button style="width:500px;height:120px;font-size:80px"onclick="Reset()">重置</button>
+<button style="width:500px;height:120px;font-size:80px"onclick="Roll()">发牌</button>
+<button style="width:500px;height:120px;font-size:80px"onclick="AllIdentity()">身份一览</button>
+<button style="width:500px;height:120px;font-size:80px"onclick="Inform()">板子信息</button>
+<button style="width:500px;height:120px;font-size:80px"onclick="Note()">上帝记录</button>
 </p>
 <p style="font-size:80px">made by jxy</p>
 <div style="font-size:80px" id=note class=note_class>
 <div id="note_content" class="note_content_class" style="font-size:80px">
 <table id="notetable" style="background-color:#eeeeee" bordercolor="#aaaaaa" border="1" width="100%">
-<tr style="font-size:30px"><th>身份</th><th>玩家</th><th>第一夜</th><th>第二夜</th><th>第三夜</th><th>第四夜</th></tr>
-<tbody style="font-size:30px">
+<tr style="font-size:50px"><th>身份</th><th>玩家</th><th>第一夜</th><th>第二夜</th><th>第三夜</th><th>第四夜</th></tr>
+<tbody style="font-size:50px">
 <tr><td align="center">狼人</td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td></tr>
 <tr><td align="center">预言家</td>
 <td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td></tr>
 <tr><td align="center">女巫</td>
 <td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td></tr>
 <tr><td align="center">守卫</td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td></tr>
-<tr><td align="center">其他</td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td></tr>
+<tr><td align="center">猎人</td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td><td align="center" contenteditable="true"></td></tr>
 </tbody>
 </table>
 <button style="width:100px;height:60px;font-size:30px"onclick="Clear()">Clear</button>
@@ -36,9 +36,6 @@
 </div>
 </div>
 </body>
-<script>/*<![CDATA[*/var cnt=0,loadimage=0;var identity=new Array("平民","狼人","预言家","女巫","猎人","守卫");var images=new Array(6);for(var i=0;i<images.length;i++){images[i]=new Image(500,700);images[i].src="images/"+identity[i]+".jpg"}var identity_ynls12=new Array(0,0,0,0,1,1,1,1,2,3,4,5);var identity_ynl9=new Array(0,0,0,1,1,1,2,3,4);var modal=document.getElementById("myModal");var note=document.getElementById("note");var obj=document.getElementById("gamemode");var index=obj.selectedIndex;var value=obj.options[index].value;function gmchange(){obj=document.getElementById("gamemode");index=obj.selectedIndex;value=obj.options[index].value}function AllIdentity()
-{var allidentity="身份一览：\n";if(value=="ynls12"){for(var i=0;i<12;i++){allidentity+=(i+1)+"号："+identity[identity_ynls12[i]]+"\n"}
-alert(allidentity);}
-if(value=="ynl9"){for(var i=0;i<9;i++){allidentity+=(i+1)+"号："+identity[identity_ynl9[i]]+"\n"}alert(allidentity);}}function Roll(){if(value=="ynls12"){modal.style.display="block";document.getElementById("card").innerHTML=(cnt+1)+"号身份："+identity[identity_ynls12[cnt]];document.getElementById("card").appendChild(images[identity_ynls12[cnt]]);cnt++}if(value=="ynl9"){modal.style.display="block";document.getElementById("card").innerHTML=(cnt+1)+"号身份："+identity[identity_ynl9[cnt]];document.getElementById("card").appendChild(images[identity_ynl9[cnt]]);cnt++}}function Note(){note.style.display="block"}function Inform(){if(value=="ynls12"){alert("身份：预言家，女巫，猎人，守卫，狼人x4，平民x4\n游戏规则：\n1.有警徽\n2.女巫全程不可自救\n3.同守守同救视为死亡\n4.猎人被毒不能开枪")}if(value=="ynl9"){alert("身份：预言家，女巫，猎人，狼人x3，平民x3\n游戏规则：\n1.无警徽\n2.女巫全程不可自救\n3.猎人被毒不能开枪")}}function Reset(){var c,b,a;c=identity_ynls12.length;while(c){a=Math.floor(Math.random()*c--);b=identity_ynls12[c];identity_ynls12[c]=identity_ynls12[a];identity_ynls12[a]=b}c=identity_ynl9.length;while(c){a=Math.floor(Math.random()*c--);b=identity_ynl9[c];identity_ynl9[c]=identity_ynl9[a];identity_ynl9[a]=b}cnt=0}function Clear(){var e=document.getElementById("notetable");var d=e.rows.length;var a=e.rows[0].cells.length;for(var c=1;c<d;c++){for(var b=1;b<a;b++){e.rows[c].cells[b].innerHTML=""}}}window.onclick=function(a){if(a.target==modal){modal.style.display="none"}if(a.target==note){note.style.display="none"}};/*]]>*/</script>
+<script>/*<![CDATA[*/var cnt=0,loadimage=0;var identity=new Array("平民","狼人","预言家","女巫","猎人","守卫");var images=new Array(6);for(var i=0;i<images.length;i++){images[i]=new Image(500,700);images[i].src="images/"+identity[i]+".jpg"}var identity_ynls12=new Array(0,0,0,0,1,1,1,1,2,3,4,5);var identity_ynl9=new Array(0,0,0,1,1,1,2,3,4);var modal=document.getElementById("myModal");var note=document.getElementById("note");var obj=document.getElementById("gamemode");var index=obj.selectedIndex;var value=obj.options[index].value;function gmchange(){obj=document.getElementById("gamemode");index=obj.selectedIndex;value=obj.options[index].value}function Roll(){if(value=="ynls12"){modal.style.display="block";document.getElementById("card").innerHTML=(cnt+1)+"号身份："+identity[identity_ynls12[cnt]];document.getElementById("card").appendChild(images[identity_ynls12[cnt]]);cnt++}if(value=="ynl9"){modal.style.display="block";document.getElementById("card").innerHTML=(cnt+1)+"号身份："+identity[identity_ynl9[cnt]];document.getElementById("card").appendChild(images[identity_ynl9[cnt]]);cnt++}}function Note(){note.style.display="block"}function Inform(){if(value=="ynls12"){alert("板子：预女猎守12人\n身份：预言家，女巫，猎人，守卫，狼人x4，平民x4\n胜利条件：屠边\n游戏规则：\n1.有警徽，双爆吞警徽\n2.女巫全程不可自救，一晚只能使用一瓶药\n3.同守同救仍然出局\n4.猎人被毒不能开枪\n5.守卫不能连续两晚守护同一个人，可以空守\n6.只有第一夜出局或公投阶段出局与自爆狼人有遗言，其他时候无遗言")}if(value=="ynl9"){alert("板子：预女猎守9人\n身份：预言家，女巫，猎人，狼人x3，平民x3\n胜利条件：屠边\n游戏规则：\n1.无警徽\n2.女巫全程不可自救，一晚只能使用一瓶药\n3.猎人被毒不能开枪\n4.只有第一夜出局或公投阶段出局与自爆狼人有遗言，其他时候无遗言")}}function AllIdentity(){var b="身份一览：\n";if(value=="ynls12"){for(var a=0;a<12;a++){b+=(a+1)+"号："+identity[identity_ynls12[a]]+"\n"}alert(b)}if(value=="ynl9"){for(var a=0;a<9;a++){b+=(a+1)+"号："+identity[identity_ynl9[a]]+"\n"}alert(b)}}function Reset(){var c,b,a;c=identity_ynls12.length;while(c){a=Math.floor(Math.random()*c--);b=identity_ynls12[c];identity_ynls12[c]=identity_ynls12[a];identity_ynls12[a]=b}c=identity_ynl9.length;while(c){a=Math.floor(Math.random()*c--);b=identity_ynl9[c];identity_ynl9[c]=identity_ynl9[a];identity_ynl9[a]=b}cnt=0}function Clear(){var e=document.getElementById("notetable");var d=e.rows.length;var a=e.rows[0].cells.length;for(var c=1;c<d;c++){for(var b=1;b<a;b++){e.rows[c].cells[b].innerHTML=""}}}window.onclick=function(a){if(a.target==modal){modal.style.display="none"}if(a.target==note){note.style.display="none"}};/*]]>*/</script>
 <style>.modal{display:none;position:fixed;z-index:1;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,0.4)}.modal-content{background-color:#fefefe;margin:15% auto;padding:20px;border:1px solid #888;width:710px}.note_class{display:none;position:fixed;z-index:1;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,0.4)}.note_content_class{background-color:#fefefe;margin:15% auto;padding:20px;border:1px solid #888;width:710px}</style>
 </html>
